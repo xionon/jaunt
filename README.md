@@ -1,8 +1,81 @@
 # Jaunt
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/jaunt`. To experiment with that code, run `bin/console` for an interactive prompt.
+Jaunt is a code demo and review tool, that searches your codebase for specially tagged comments, then sorts and categorizes them.
 
-TODO: Delete this and the text above, and describe your gem
+Jaunt features multiple output modes, including Interactive, HTML, Markdown, and PDF.
+
+## Simple Usage
+
+First, add specially marked comments to your code.
+
+```ruby
+# :jaunt:
+# This section of the code does something very interesting
+def do_something_interesting
+end
+
+# :jaunt:
+# This code does something else very interesting
+def do_something_else_interesting
+end
+```
+
+Then, run `jaunt` from the command line. This will give you a guided tour of the previously marked code snippets. Fun!
+
+## Advanced Topics
+
+- [Sorting jaunts](#sorting-jaunts)
+- [Naming jaunts](#naming-jaunts)
+- [Exporting jaunts](#exporting-jaunts)
+- [Interactive jaunts](#interactive-jaunts)
+
+### Sorting Jaunts
+
+Jaunts can be sorted.
+
+```ruby
+# :jaunt-2:
+# This jaunt appears second
+def second
+end
+
+# :jaunt-1:
+# This jaunt appears first
+def first
+end
+```
+
+### Naming jaunts
+
+Jaunts can be named.
+
+```ruby
+# :jaunt:(second)
+# This jaunt appears in the `second` jaunt
+def second
+end
+
+# :jaunt:(first)
+# This jaunt appears in the `first` jaunt
+def first
+end
+```
+
+You can invoke a specific jaunt by running `jaunt <name>`
+
+### Exporting jaunts
+
+Jaunts can be exported in many different formats using the `--format` argument. The default is `--format=interactive`.
+
+Other formats:
+
+- `--format=markdown` - Print GH-flavored markdown to STDOUT
+- `--format=pull-request` - Print GH-flavored markdown with GH[E] compatable links to the files
+- `--format=html` - Print HTML (that uses Pygments) to STDOUT
+
+### Interactive jaunts
+
+Jaunt can run a small server you can click through by running `jaunt --server`. This will bind on `http://localhost:4111` and automatically serve all availalbe jaunts.
 
 ## Installation
 

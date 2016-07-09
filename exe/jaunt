@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+
+require 'bundler/setup'
+require 'jaunt'
+
+file_name = ARGV[0]
+inspector = Jaunt::CodeInspector.new(file_name)
+
+inspector.stops.each do |stop|
+  puts stop.text
+  puts ?= * 50
+  puts stop.code_text
+
+  print "Press enter to continue..."
+  to_continue = STDIN.gets
+  puts ?= * 50
+end
